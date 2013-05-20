@@ -35,7 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -100,10 +99,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MailBC.DataStore\MailBC.DataStore.csproj">
-      <Project>{1F557B71-CE5D-4A28-918B-E3FF6B2BBA94}</Project>
-      <Name>MailBC.DataStore</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MailBC.Mappings\MailBC.Mappings.csproj">
       <Project>{4e471a86-544e-4399-8d7f-bb1697407c81}</Project>
       <Name>MailBC.Mappings</Name>

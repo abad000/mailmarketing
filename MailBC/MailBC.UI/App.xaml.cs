@@ -1,7 +1,5 @@
-﻿using System.Configuration;
-using System.Windows;
-using MailBC.DataStore;
-using MailBC.DataStore.ContextStorages;
+﻿using System.Windows;
+using MailBC.UI.Infrastructure.BootStrapper;
 
 namespace MailBC.UI
 {
@@ -18,28 +16,9 @@ namespace MailBC.UI
             screen.Show();
 
             // TODO: move initializations in a separated thread (asynchronous initializations) inside the spalshscreen
-
-            InitializeDatabases();
-            InitializeDependencies();
+            AppBootStrapper.RunInitializations();
 
             screen.Close();
-        }
-
-        private static void InitializeDatabases()
-        {
-            string connectionStringName = ConfigurationManager.AppSettings.Get("connectionStringName");
-            string[] mappingAssemblies = ConfigurationManager.AppSettings.Get("mappingAssemblies").Split(';');
-
-            DbContextInitializer.Instance().InitializeDbContextOnce(() =>
-                {
-                    DbContextManager.InitStorage(new SimpleDbContextStorage());
-                    DbContextManager.Init(connectionStringName, mappingAssemblies, false, true);
-                });
-        }
-
-        private static void InitializeDependencies()
-        {
-            // TODO: Initialize dependency container here...
         }
     }
 }
