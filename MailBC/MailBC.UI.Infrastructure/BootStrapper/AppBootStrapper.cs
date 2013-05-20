@@ -1,13 +1,16 @@
 ﻿using System.Configuration;
 using MailBC.DataStore;
 using MailBC.DataStore.ContextStorages;
+using MailBC.UI.Infrastructure.Dependency;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
 
 namespace MailBC.UI.Infrastructure.BootStrapper
 {
-    public class AppBootStrapper
+    public static class AppBootStrapper
     {
-        private static readonly string connectionStringName = ConfigurationManager.AppSettings.Get("connectionStringName");
-        private static readonly string[] mappingAssemblies = ConfigurationManager.AppSettings.Get("mappingAssemblies").Split(';');
+        private static readonly string ConnectionStringName = ConfigurationManager.AppSettings.Get("connectionStringName");
+        private static readonly string[] MappingAssemblies = ConfigurationManager.AppSettings.Get("mappingAssemblies").Split(';');
 
         public static void RunInitializations()
         {
@@ -20,13 +23,16 @@ namespace MailBC.UI.Infrastructure.BootStrapper
             DbContextInitializer.Instance().InitializeDbContextOnce(() =>
                 {
                     DbContextManager.InitStorage(new SimpleDbContextStorage());
-                    DbContextManager.Init(connectionStringName, mappingAssemblies, false, true);
+                    DbContextManager.Init(ConnectionStringName, MappingAssemblies, false, true);
                 });
         }
 
         private static void InitializeDependencies()
         {
-            // TODO: Initialize dependency container here...
+            UnityConfigurationSection section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
+            UnityContainer container = new UnityContainer();
+            section.Configure(container);
+            ApplicationContext.DependencyResolver = new UnityDependencyResolver(container);
         }
     }
 }

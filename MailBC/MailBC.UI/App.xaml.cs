@@ -14,11 +14,6 @@ namespace MailBC.UI
         {
             Boot.SplashScreen screen = new Boot.SplashScreen();
             screen.Show();
-
-            // TODO: move initializations in a separated thread (asynchronous initializations) inside the spalshscreen
-            AppBootStrapper.RunInitializations();
-
-            screen.Close();
         }
     }
 }
