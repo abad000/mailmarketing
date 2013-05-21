@@ -3,9 +3,9 @@ using System.Windows;
 
 namespace MailBC.UI
 {
-    public partial class MainWindow : Window
+    public partial class MainScreen
     {
-        public MainWindow()
+        public MainScreen()
         {
             InitializeComponent();
         }

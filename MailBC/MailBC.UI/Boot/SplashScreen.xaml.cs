@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Threading;
 using MailBC.UI.Infrastructure.BootStrapper;
+using MailBC.UI.Infrastructure.Dependency;
 
 namespace MailBC.UI.Boot
 {
@@ -23,14 +24,13 @@ namespace MailBC.UI.Boot
         private void LaunchMainScreen()
         {
             AppBootStrapper.RunInitializations();
-
             Thread.Sleep(5000);
 
             this.Dispatcher.BeginInvoke(DispatcherPriority.Send, new DispatcherOperationCallback(delegate
                 {
                     this.Hide();
 
-                    MainWindow window = new MainWindow();
+                    MainScreen window = ApplicationContext.DependencyResolver.LocateDependency<MainScreen>();
                     window.Show();
 
                     return null;

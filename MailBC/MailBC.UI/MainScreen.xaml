@@ -1,0 +1,34 @@
+﻿<mui:ModernWindow x:Class="MailBC.UI.MainScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mui="clr-namespace:FirstFloor.ModernUI.Windows.Controls;assembly=FirstFloor.ModernUI"
+        xmlns:presentation="clr-namespace:FirstFloor.ModernUI.Presentation;assembly=FirstFloor.ModernUI"
+        Title="MainWindow" Height="768" Width="1024" MinHeight="800" UseLayoutRounding="False" MinWidth="1280">
+    <mui:ModernWindow.MenuLinkGroups>
+        <presentation:LinkGroup DisplayName="Messages" >
+            <presentation:LinkGroup.Links>
+                <presentation:Link DisplayName="Dashboard" />
+                <presentation:Link DisplayName="Composer un message" />
+                <presentation:Link DisplayName="Envoyer" />
+                <presentation:Link DisplayName="Calendrier" />
+                <presentation:Link DisplayName="Journal" />
+                <presentation:Link DisplayName="Google Analytics" />
+            </presentation:LinkGroup.Links>
+        </presentation:LinkGroup>
+        <presentation:LinkGroup DisplayName="Listes et adresses" >
+            <presentation:LinkGroup.Links>
+                <presentation:Link DisplayName="Gestion des listes" />
+                <presentation:Link DisplayName="Listes noires" />
+                <presentation:Link DisplayName="Importation et exportation" />
+                <presentation:Link DisplayName="Gestion des Abonnements" />
+                <presentation:Link DisplayName="Gestion des Bounce-backs" />
+            </presentation:LinkGroup.Links>
+        </presentation:LinkGroup>
+        <presentation:LinkGroup DisplayName="Options" />
+    </mui:ModernWindow.MenuLinkGroups>
+
+
+    <Grid>
+        
+    </Grid>
+</mui:ModernWindow>
