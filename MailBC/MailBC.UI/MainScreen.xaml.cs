@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
 namespace MailBC.UI
 {
@@ -10,7 +9,7 @@ namespace MailBC.UI
             InitializeComponent();
         }
 
-        protected override void OnClosed(EventArgs e)
+        protected override void OnClosed(System.EventArgs e)
         {
             base.OnClosed(e);
             Application.Current.Shutdown();

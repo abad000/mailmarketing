@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mui="clr-namespace:FirstFloor.ModernUI.Windows.Controls;assembly=FirstFloor.ModernUI"
         xmlns:presentation="clr-namespace:FirstFloor.ModernUI.Presentation;assembly=FirstFloor.ModernUI"
-        Title="MainWindow" Height="768" Width="1024" MinHeight="800" UseLayoutRounding="False" MinWidth="1280">
+        Title="MainScreen" Width="1280" Height="800">
     <mui:ModernWindow.MenuLinkGroups>
         <presentation:LinkGroup DisplayName="Messages" >
             <presentation:LinkGroup.Links>
@@ -26,8 +26,6 @@
         </presentation:LinkGroup>
         <presentation:LinkGroup DisplayName="Options" />
     </mui:ModernWindow.MenuLinkGroups>
-
-
     <Grid>
         
     </Grid>
