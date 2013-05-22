@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Threading;
 using MailBC.UI.Infrastructure.BootStrapper;
 using MailBC.UI.Infrastructure.Dependency;
+using MailBC.UI.Infrastructure.ViewModels;
+using MailBC.UI.Views.ListsAndAddresses;
 
 namespace MailBC.UI.Boot
 {
@@ -30,8 +32,7 @@ namespace MailBC.UI.Boot
                 {
                     this.Hide();
 
-                    MainScreen window = ApplicationContext.DependencyResolver.LocateDependency<MainScreen>();
-                    window.Show();
+                    ApplicationContext.DependencyResolver.LocateDependency<MainScreen>().Show();
 
                     return null;
 

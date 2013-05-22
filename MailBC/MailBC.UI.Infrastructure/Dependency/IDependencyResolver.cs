@@ -1,7 +1,11 @@
-﻿namespace MailBC.UI.Infrastructure.Dependency
+﻿using Microsoft.Practices.Unity;
+
+namespace MailBC.UI.Infrastructure.Dependency
 {
     public interface IDependencyResolver
     {
-        T LocateDependency<T>(); 
+        T LocateDependency<T>();
+        IUnityContainer RegisterType<T>(string name);
+        IUnityContainer RegisterInstance<T>(T instance);
     }
 }

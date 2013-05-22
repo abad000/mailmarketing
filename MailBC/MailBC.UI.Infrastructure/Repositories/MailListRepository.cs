@@ -1,4 +1,6 @@
-﻿using MailBC.DataStore;
+﻿using System.Collections.Generic;
+using System.Linq;
+using MailBC.DataStore;
 using MailBC.Domain.Entities;
 using MailBC.Domain.Repositories;
 
@@ -6,7 +8,14 @@ namespace MailBC.UI.Infrastructure.Repositories
 {
     public class MailListRepository : Repository, IMailListRepository
     {
+        public MailListRepository() : base("MailBCDb") { }
+
         #region Implementation of IMailListRepository
+
+        public IQueryable<MailList> GetAll()
+        {
+            return Query<MailList>();
+        }
 
         public MailList GetById(long id)
         {

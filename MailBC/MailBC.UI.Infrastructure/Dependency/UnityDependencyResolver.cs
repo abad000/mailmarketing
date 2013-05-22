@@ -15,5 +15,15 @@ namespace MailBC.UI.Infrastructure.Dependency
         {
             return _container.Resolve<T>();
         }
+
+        public IUnityContainer RegisterType<T>(string name)
+        {
+            return _container.RegisterType<T>(name);
+        }
+
+        public IUnityContainer RegisterInstance<T>(T instance)
+        {
+            return _container.RegisterInstance<T>(instance);
+        }
     }
 }

@@ -71,8 +71,8 @@ namespace MailBC.DataStore
         private DbContext DbContext
         {
             get
-            { 
-                return _context ?? (_context = _connectionStringName == string.Empty
+            {
+                return _context ?? (_context = string.IsNullOrEmpty(_connectionStringName)
                                         ? DbContextManager.Current
                                         : DbContextManager.CurrentFor(_connectionStringName));
             }
