@@ -1,19 +1,17 @@
 ﻿using System.Windows;
-using MailBC.UI.Infrastructure.BootStrapper;
+using MailBC.UI.Boot;
 
 namespace MailBC.UI
 {
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
     public partial class App : Application
     {
-        /// <summary>
-        /// Represents the Application's entry point
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="startupEventArgs"></param>
-        private void Run(object sender, StartupEventArgs startupEventArgs)
+        private void Run(object sender, StartupEventArgs e)
         {
-            Boot.SplashScreen screen = new Boot.SplashScreen();
-            screen.Show();
+            Boot.SplashScreen splash = new Boot.SplashScreen();
+            splash.Show();
         }
     }
 }

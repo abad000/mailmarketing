@@ -1,8 +1,12 @@
 ﻿using System.Windows;
+using FirstFloor.ModernUI.Windows.Controls;
 
 namespace MailBC.UI
 {
-    public partial class MainScreen
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainScreen : ModernWindow
     {
         public MainScreen()
         {
