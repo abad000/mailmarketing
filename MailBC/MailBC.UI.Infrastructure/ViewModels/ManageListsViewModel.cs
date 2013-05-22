@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading;
-using System.Windows.Data;
-using System.Windows.Threading;
+﻿using System.Collections.ObjectModel;
 using MailBC.Domain.Entities;
 using MailBC.Domain.Repositories;
 using MailBC.UI.Infrastructure.Base;
-using System.Threading.Tasks;
 
 namespace MailBC.UI.Infrastructure.ViewModels
 {
@@ -16,6 +9,7 @@ namespace MailBC.UI.Infrastructure.ViewModels
     {
         private readonly IMailListRepository _mailListRepository;
         private ObservableCollection<MailList> _mailLists;
+        private MailList _selectedMailList;
 
         #region Binding Properties
 
@@ -24,21 +18,29 @@ namespace MailBC.UI.Infrastructure.ViewModels
             get { return _mailLists; }
         }
 
-        public MailList SelectedMailList { get; set; }
+        public MailList SelectedMailList
+        {
+            get { return _selectedMailList; }
+            set
+            {
+                if (_selectedMailList == value) return;
+                _selectedMailList = value;
+                OnPropertyChanged("SelectedMailList");
+            }
+        }
 
         #endregion
 
         public ManageListsViewModel(IMailListRepository mailListRepository)
         {
             _mailListRepository = mailListRepository;
-
             _mailLists = new ObservableCollection<MailList>(_mailListRepository.GetAll());
-            SelectedMailList = _mailLists.Count > 0 ? _mailLists[0] : null;
+            _selectedMailList = _mailLists.Count > 0 ? _mailLists[0] : null;
         }
 
         public void Initialize()
         {
-            // TODO: async initializations here...
+            throw new System.NotImplementedException();
         }
     }
 }
