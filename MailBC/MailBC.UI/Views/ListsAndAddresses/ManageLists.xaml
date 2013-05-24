@@ -12,19 +12,24 @@
                 <Grid Margin="0,20,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     
-                    <ComboBox x:Name="CbxMailLists" Grid.Column="0" Margin="0,0,20,0" 
-                              ItemsSource="{Binding MailLists}"
+                    <ComboBox x:Name="CbxMailLists"
+                              Grid.Column="0" Grid.Row="0" 
+                              Margin="0,0,20,0" 
+                              ItemsSource="{Binding Path=MailLists}"
                               DisplayMemberPath="Name"
                               SelectedValuePath="Id"
-                              SelectedItem="{Binding SelectedMailList}" />
-                    
-                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                              SelectedItem="{Binding Path=SelectedMailList}" IsSynchronizedWithCurrentItem="True" />
+
+                    <StackPanel Grid.Column="1" Grid.Row="0" 
+                                Orientation="Horizontal">
                         <mui:ModernButton x:Name="BtnAdd" IconData="F1 M 35,19L 41,19L 41,35L 57,35L 57,41L 41,41L 41,57L 35,57L 35,41L 19,41L 19,35L 35,35L 35,19 Z "
                                           ToolTip="Ajouter une Liste" />
                         <mui:ModernButton x:Name="BtnRename" IconData="F1 M 42.7499,25.3335L 50.6666,33.2501L 31.6667,52.25L 23.75,44.3334L 42.7499,25.3335 Z M 52.1704,31.6664L 44.3333,23.8293L 47.6921,20.4706C 48.9288,19.2339 50.9338,19.2339 52.1705,20.4706L 55.5292,23.8293C 56.7659,25.066 56.7659,27.071 55.5292,28.3077L 52.1704,31.6664 Z M 21.7709,55.0207L 20.9792,54.2291L 23.0573,47.5988L 28.4011,52.9426L 21.7709,55.0207 Z "
@@ -34,6 +39,25 @@
                         <mui:ModernButton x:Name="BtnPrint" IconData="F1 M 25,27L 25,17L 51,17L 51,27L 47,27L 47,21L 29,21L 29,27L 25,27 Z M 16,28L 60,28L 60,51L 51,51L 51,60L 25,60L 25,51L 16,51L 16,28 Z M 55,46L 55,33L 21,33L 21,46L 55,46 Z M 25,44L 25,39L 51,39L 51,44L 25,44 Z " 
                                           ToolTip="Imprimer" />
                     </StackPanel>
+                    <StackPanel Grid.ColumnSpan="2" Grid.Row="1"
+                                Orientation="Horizontal">
+                        
+                    </StackPanel>
+                    <DataGrid x:Name="GrdContacts"
+                              Grid.ColumnSpan="2" Grid.Row="2"
+                              AutoGenerateColumns="False"
+                              CanUserReorderColumns="True"
+                              CanUserSortColumns="True"
+                              CanUserAddRows="False"
+                              VerticalScrollBarVisibility="Visible"
+                              VerticalAlignment="Top"
+                              ItemsSource="{Binding Path=SelectedMailList.Contacts}" BorderThickness="0.5" GridLinesVisibility="All" AlternatingRowBackground="#FFE2E2E2" IsManipulationEnabled="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Path=Email, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="First Name" Binding="{Binding Path=FirstName, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Last Name" Binding="{Binding Path=LastName, Mode=TwoWay}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </StackPanel>
         </ScrollViewer>

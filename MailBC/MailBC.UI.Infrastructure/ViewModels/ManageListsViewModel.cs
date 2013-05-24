@@ -1,4 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Data;
+
 using MailBC.Domain.Entities;
 using MailBC.Domain.Repositories;
 using MailBC.UI.Infrastructure.Base;
@@ -8,15 +12,18 @@ namespace MailBC.UI.Infrastructure.ViewModels
     public class ManageListsViewModel : ViewModelBase, IViewModel
     {
         private readonly IMailListRepository _mailListRepository;
-        private ObservableCollection<MailList> _mailLists;
+
+        private ICollectionView _mailListsView;
         private MailList _selectedMailList;
+
+        public ManageListsViewModel(IMailListRepository mailListRepository)
+        {
+            _mailListRepository = mailListRepository;
+        }
 
         #region Binding Properties
 
-        public ObservableCollection<MailList> MailLists
-        {
-            get { return _mailLists; }
-        }
+        public ObservableCollection<MailList> MailLists { get; private set; }
 
         public MailList SelectedMailList
         {
@@ -31,16 +38,18 @@ namespace MailBC.UI.Infrastructure.ViewModels
 
         #endregion
 
-        public ManageListsViewModel(IMailListRepository mailListRepository)
-        {
-            _mailListRepository = mailListRepository;
-            _mailLists = new ObservableCollection<MailList>(_mailListRepository.GetAll());
-            _selectedMailList = _mailLists.Count > 0 ? _mailLists[0] : null;
-        }
-
         public void Initialize()
         {
-            throw new System.NotImplementedException();
+            MailLists = new ObservableCollection<MailList>(_mailListRepository.GetAll());
+            SelectedMailList = MailLists.Count > 0 ? MailLists[0] : null;
+
+            _mailListsView = CollectionViewSource.GetDefaultView(MailLists);
+            _mailListsView.CurrentChanged += OnCurrentChanged; 
+        }
+
+        private void OnCurrentChanged(object sender, EventArgs e)
+        {
+            MailList current = _mailListsView.CurrentItem as MailList;
         }
     }
 }
